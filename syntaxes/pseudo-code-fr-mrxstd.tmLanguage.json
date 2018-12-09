@@ -1,0 +1,140 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Pseudo Code",
+	"patterns": [{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#algo"
+		},
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#docblock"
+		}
+
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+					"name": "keyword.control.loop.pseudo-code-fr-mrxstd",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(rep[eé]ter|jusqu\\'[aà]|(fin\\s+)?tant\\s+que)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "keyword.control.flow.pseudo-code-fr-mrxstd",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(retourner)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "keyword.control.switch.pseudo-code-fr-mrxstd",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(pour|autrement|(fin\\s+)?selon)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "keyword.control.conditional.pseudo-code-fr-mrxstd",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(sinon|(fin\\s+)?si)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "keyword.control.program.pseudo-code-fr-mrxstd",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(d[eé]but|fin)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.pseudo-code-fr-mrxstd",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [{
+				"name": "constant.character.escape.pseudo-code-fr-mrxstd",
+				"match": "\\\\."
+			}]
+		},
+		"algo": {
+			"patterns": [{
+				"include": "#algo-declaration"
+			}]
+		},
+		"algo-declaration": {
+			"name": "meta.class.pseudo-code-fr-mrxstd",
+			"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(algo)\b(?=\\s+|[<{]|\/[\/*])",
+			"captures": {
+				"1": {
+					"name": "storage.type.class.pseudo-code-fr-mrxstd"
+				}
+			},
+			"patterns": [{
+				"include": "#algo-declaration-or-expression-patterns"
+			}]
+		},
+		"algo-declaration-or-expression-patterns": {
+			"patterns": [{
+					"include": "#comment"
+				},
+				{
+					"match": "[_$[:alpha:]][_$[:alnum:]]*",
+					"captures": {
+						"0": {
+							"name": "entity.name.type.class.pseudo-code-fr-mrxstd"
+						}
+					}
+				}
+			]
+		},
+		"comment": {
+			"patterns": [{
+					"name": "comment.block.documentation.pseudo-code-fr-mrxstd",
+					"begin": "{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.pseudo-code-fr-mrxstd"
+						}
+					},
+					"end": "}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.pseudo-code-fr-mrxstd"
+						}
+					},
+					"patterns": [{
+						"include": "#docblock"
+					}]
+				},
+				{
+					"name": "comment.block.pseudo-code-fr-mrxstd",
+					"begin": "({)(?:\\s*((@)internal)(?=\\s|(})))?",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.comment.pseudo-code-fr-mrxstd"
+						},
+						"2": {
+							"name": "storage.type.internaldeclaration.pseudo-code-fr-mrxstd"
+						},
+						"3": {
+							"name": "punctuation.decorator.internaldeclaration.pseudo-code-fr-mrxstd"
+						}
+					},
+					"end": "}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.pseudo-code-fr-mrxstd"
+						}
+					}
+				}
+			]
+		},
+		"docblock": {
+			"patterns": [{
+				"begin": "(?x) (r[oô]le|(?:pr[ée]|post)-condition)(?:\\s+)?:(?:\\s+)?",
+				"end": "(})",
+				"captures": {
+					"1": {
+						"name": "storage.type.class.pseudodoc"
+					}
+				}
+			}]
+		}
+	},
+	"scopeName": "source.pseudocode"
+}

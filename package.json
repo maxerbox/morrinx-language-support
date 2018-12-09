@@ -1,0 +1,34 @@
+{
+    "name": "morrinx-language-support",
+    "displayName": "Pseudo Code - Univ Nantes",
+    "description": "French pseudo code language support - University of Nantes standard",
+    "version": "0.0.1",
+    "publisher": "maxerbox",
+    "engines": {
+        "vscode": "^1.20.0"
+    },
+    "icon": "Logo.png",
+    "categories": [
+        "Programming Languages"
+    ],
+    "keywords": [
+        "pseudo",
+        "code",
+        "université",
+        "nantes",
+        "fr"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "pseudo-code-fr-mrxstd",
+            "aliases": ["Pseudo Code", "pseudo-code-fr-mrxstd"],
+            "extensions": [".pseudoc"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "pseudo-code-fr-mrxstd",
+            "scopeName": "source.pseudocode",
+            "path": "./syntaxes/pseudo-code-fr-mrxstd.tmLanguage.json"
+        }]
+    }
+}
